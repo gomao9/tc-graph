@@ -9,7 +9,7 @@
 
 require 'csv'
 require 'open-uri'
-records = CSV.table(open('/Users/gomao/Downloads/tb.csv'))
+records = CSV.table(open('https://dl.dropboxusercontent.com/s/7cl0209tlwggbra/tb.csv'))
 max = Score.maximum(:datetime)
 records = records.select { |r| Time.parse(r[:datetime]) > max } if max
 records.each do |r|
