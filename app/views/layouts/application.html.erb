@@ -6,9 +6,95 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          TC得票数グラフ
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              超ビーチバレー
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                新入生
+              </a>
+              <a class="navbar-item">
+                先輩
+              </a>
+              <a class="navbar-item">
+                キング
+              </a>
+              <a class="navbar-item">
+                右腕クイーン
+              </a>
+              <a class="navbar-item">
+                同級生
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              三姉妹カフェ
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                長女
+              </a>
+              <a class="navbar-item">
+                次女
+              </a>
+              <a class="navbar-item">
+                三女
+              </a>
+              <a class="navbar-item">
+                ネコ
+              </a>
+              <a class="navbar-item">
+                お客さん
+              </a>
+            </div>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              劇場サスペンス
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                新ヒロイン
+              </a>
+              <a class="navbar-item">
+                スタア
+              </a>
+              <a class="navbar-item">
+                元大女優
+              </a>
+              <a class="navbar-item">
+                支配人
+              </a>
+              <a class="navbar-item">
+                探偵
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
