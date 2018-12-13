@@ -12,7 +12,7 @@ class ScoresController < ApplicationController
     diffs = diffs.group_by(&:datetime).map { |_group, (first, second)| first.score - second.score }
 
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title('ネコ')
+      f.title('得票数推移')
       f.xAxis(categories: datetimes)
       f.yAxis([
         { title: { text: '総得票数' } },
@@ -64,35 +64,35 @@ class ScoresController < ApplicationController
 
   def set_subject
     @subject = case params[:subject]
-               when 'shinnyusei'
-                 @subject = '新入生'
-               when 'senpai'
-                 @subject = '先輩'
-               when 'king'
-                 @subject = 'キング'
-               when 'migiude'
-                 @subject = '右腕クイーン'
-               when 'doukyusei'
-                 @subject = '同級生'
-               when 'choujo'
-                 @subject = '長女'
-               when 'jijo'
-                 @subject = '次女'
-               when 'sanjo'
-                 @subject = '三女'
-               when 'cat'
-                 @subject = 'ネコ'
-               when 'okyakusan'
-                 @subject = 'お客さん'
                when 'heroine'
+                 @subject = '新入生'
+               when 'friend'
+                 @subject = '先輩'
+               when 'teacher'
+                 @subject = 'キング'
+               when 'landlady'
+                 @subject = '右腕クイーン'
+               when 'maid'
+                 @subject = '同級生'
+               when 'girl'
+                 @subject = '長女'
+               when 'fairy'
+                 @subject = '次女'
+               when 'witch'
+                 @subject = '三女'
+               when 'wolf'
+                 @subject = 'ネコ'
+               when 'traveller'
+                 @subject = 'お客さん'
+               when 'dusk'
                  @subject = '新ヒロイン'
-               when 'star'
+               when 'busterblade'
                  @subject = 'スタア'
-               when 'daijoyu'
+               when 'amaryllis'
                  @subject = '元大女優'
-               when 'shihainin'
+               when 'velvet'
                  @subject = '支配人'
-               when 'tantei'
+               when 'finalday'
                  @subject = '探偵'
                else
                  @subject = 'ネコ'
