@@ -1,11 +1,9 @@
-<div class="container">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title"><%= @subject %></h1>
-      </div>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title"><%= @subject %></h1>
     </div>
-  </section>
+  </div>
+</section>
 
-  <%= high_chart('graph', @graph) %>
-</div>
+<%= high_chart('graph', @graph) %>
