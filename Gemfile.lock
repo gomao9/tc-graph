@@ -55,6 +55,8 @@ GEM
       xpath (~> 2.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    clockwork (2.0.3)
+      tzinfo
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -191,6 +193,7 @@ DEPENDENCIES
   bulma-rails
   byebug
   capybara (~> 2.13)
+  clockwork
   coffee-rails (~> 4.2)
   google-analytics-rails (= 1.1.1)
   jbuilder (~> 2.5)
