@@ -5,9 +5,10 @@ require 'open-uri'
 
 
 module Clockwork
-  every(5.minutes, '5minutely update') do
-    casts = JSON.parse open('https://api.matsurihi.me/mltd/v1/election/current').read
+  every(1.minute, 'minutely update') do
+    casts = JSON.parse open('https://api.matsurihi.me/mltd/v1/election/current?prettyPrint=false').read
 
+    datetime = nil
     scores = casts.flat_map do |cast|
       subject = cast['name']
       datetime = DateTime.parse(cast['summaryTime'])
@@ -22,9 +23,11 @@ module Clockwork
       end
     end
 
-    Score.transaction do
-      scores.each do |s|
-       Score.find_or_create_by(s)
+    unless Score.exists?(datetime: datetime)
+      Score.transaction do
+        scores.each do |s|
+          Score.find_or_create_by(s)
+        end
       end
     end
   end
