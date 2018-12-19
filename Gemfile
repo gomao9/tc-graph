@@ -58,5 +58,6 @@ end
 
 group :production do
   gem 'pg'
+  gem 'actionpack-page_caching'
 end
 
