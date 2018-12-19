@@ -24,7 +24,7 @@ module Clockwork
 
     Score.transaction do
       scores.each do |s|
-       Score.find_or_initialize_by(s)
+       Score.find_or_create_by(s)
       end
     end
   end
