@@ -1,15 +1,19 @@
 class DashboardController < ApplicationController
   def index
     subject = '主人公'
+    idol_count = 3
     newest = Score.where(subject: subject).order(datetime: :desc).first.datetime
-    target_idols = Score.where(subject: subject, datetime: newest).order(:rank).limit(3).pluck(:idol)
-    datetimes = Score.where(subject: subject).order(:datetime).limit(288).pluck(:datetime).uniq
+    target_idols = Score.where(subject: subject, datetime: newest).order(:rank).limit(idol_count).pluck(:idol)
+    pp datetimes = Score.where(subject: subject).order(:datetime).pluck(:datetime).uniq.last(24*60/5)
+    pp start_date = datetimes.first
     datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
-    idols = Score.where(subject: subject, idol: target_idols).order(:idol, :datetime)
+
+    datetime_condition = Score.arel_table[:datetime].gteq(start_date)
+    idols = Score.where(subject: subject, idol: target_idols).where(datetime_condition).order(:idol, :datetime)
     idols = idols.group_by(&:idol)
 
-    diffs = Score.where(subject: subject, rank: [1, 2]).order(:datetime, :rank)
+    diffs = Score.where(subject: subject, rank: [1, 2]).where(datetime_condition).order(:datetime, :rank)
     diffs = diffs.group_by(&:datetime).map { |_group, (first, second)| first.score - second.score }
 
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
