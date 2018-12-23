@@ -1,9 +1,92 @@
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">トップページ</h1>
+      <h1 class="title">孤島サスペンスホラー</h1>
     </div>
   </div>
 </section>
 
-<%= high_chart('graph', @graph) %>
+<div class="columns is-multiline">
+  <div class="column is-one-third">
+    <h1 class="subtitle">主人公</h1>
+    <%= high_chart('heroine', @heroine) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">友達</h1>
+    <%= high_chart('friend', @friend) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">先生</h1>
+    <%= high_chart('teacher', @teacher) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">館の女主人</h1>
+    <%= high_chart('landlady', @landlady) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">メイド</h1>
+    <%= high_chart('maid', @maid) %>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">おとぎの国の物語</h1>
+    </div>
+  </div>
+</section>
+
+<div class="columns is-multiline">
+  <div class="column is-one-third">
+    <h1 class="subtitle">少女</h1>
+    <%= high_chart('girl', @girl) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">妖精</h1>
+    <%= high_chart('fairy', @fairy) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">魔法使い</h1>
+    <%= high_chart('witch', @witch) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">オオカミ</h1>
+    <%= high_chart('wolf', @wolf) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">旅人</h1>
+    <%= high_chart('traveller', @traveller) %>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">近未来アウトサイダー</h1>
+    </div>
+  </div>
+</section>
+
+<div class="columns is-multiline">
+  <div class="column is-one-third">
+    <h1 class="subtitle">ダスク</h1>
+    <%= high_chart('dusk', @dusk) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">バスターブレイド</h1>
+    <%= high_chart('busterblade', @busterblade) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">アマリリス</h1>
+    <%= high_chart('amaryllis', @amaryllis) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">ベルベット</h1>
+    <%= high_chart('velvet', @velvet) %>
+  </div>
+  <div class="column is-one-third">
+    <h1 class="subtitle">ファイナルデイ</h1>
+    <%= high_chart('finalday', @finalday) %>
+  </div>
+</div>
