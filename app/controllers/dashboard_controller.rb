@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @graphs = Rails.cache.fetch("dashboard", expired_in: 10.minutes) do
+    @graphs = Rails.cache.fetch("dashboard") do
       subject = '主人公'
       newest = Score.where(subject: subject).order(datetime: :desc).first.datetime
       datetimes = Score.where(subject: subject).order(:datetime).pluck(:datetime).uniq.last(24*60/5)

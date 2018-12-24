@@ -99,6 +99,6 @@ Rails.application.configure do
      socket_timeout: 1.5,
      socket_failure_delay: 0.2,
      down_retry_delay: 60,
-     expires_in: 10.seconds
+     expires_in: 10.minutes
   }
 end

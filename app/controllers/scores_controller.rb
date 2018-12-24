@@ -2,7 +2,7 @@ class ScoresController < ApplicationController
   before_action :set_subject, only: :index
 
   def index
-    @graph = Rails.cache.fetch("index/#{@subject}/graph", expired_in: 10.minutes) do
+    @graph = Rails.cache.fetch("index/#{@subject}/graph") do
       datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
       datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
