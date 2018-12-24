@@ -5,10 +5,14 @@ class ScoresController < ApplicationController
     datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
     datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
-    idols = Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+    idols = Rails.cache.fetch("index/#{@subject}/scores", expired_in: 10.minutes) do
+      Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+    end
     idols = idols.group_by(&:idol)
 
-    diffs = Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)
+    diffs = Rails.cache.fetch("index/#{@subject}/diffs", expired_in: 10.minutes) do
+      Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)
+    end
     diffs = diffs.group_by(&:datetime).map { |_group, (first, second)| first.score - second.score }
 
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
