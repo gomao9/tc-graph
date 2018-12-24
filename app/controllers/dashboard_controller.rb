@@ -7,24 +7,28 @@ class DashboardController < ApplicationController
     datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
     datetime_condition = Score.arel_table[:datetime].gteq(start_date)
 
-    @heroine = graph('主人公', datetimes, newest, datetime_condition)
-    @friend = graph('友達', datetimes, newest, datetime_condition)
-    @teacher = graph('先生', datetimes, newest, datetime_condition)
-    @landlady = graph('館の女主人', datetimes, newest, datetime_condition)
-    @maid = graph('メイド', datetimes, newest, datetime_condition)
 
-    @girl = graph('少女', datetimes, newest, datetime_condition)
-    @fairy = graph('妖精', datetimes, newest, datetime_condition)
-    @witch = graph('魔法使い', datetimes, newest, datetime_condition)
-    @wolf = graph('オオカミ', datetimes, newest, datetime_condition)
-    @traveller = graph('旅人', datetimes, newest, datetime_condition)
+    @graphs = Rails.cache.fetch("dashboard", expired_in: 10.minutes) do
+      {
+        heroine: graph('主人公', datetimes, newest, datetime_condition),
+        friend: graph('友達', datetimes, newest, datetime_condition),
+        teacher: graph('先生', datetimes, newest, datetime_condition),
+        landlady: graph('館の女主人', datetimes, newest, datetime_condition),
+        maid: graph('メイド', datetimes, newest, datetime_condition),
 
-    @dusk = graph('ダスク', datetimes, newest, datetime_condition)
-    @busterblade = graph('バスターブレイド', datetimes, newest, datetime_condition)
-    @amaryllis = graph('アマリリス', datetimes, newest, datetime_condition)
-    @velvet = graph('ベルベット', datetimes, newest, datetime_condition)
-    @finalday = graph('ファイナルデイ', datetimes, newest, datetime_condition)
+        girl: graph('少女', datetimes, newest, datetime_condition),
+        fairy: graph('妖精', datetimes, newest, datetime_condition),
+        witch: graph('魔法使い', datetimes, newest, datetime_condition),
+        wolf: graph('オオカミ', datetimes, newest, datetime_condition),
+        traveller: graph('旅人', datetimes, newest, datetime_condition),
 
+        dusk: graph('ダスク', datetimes, newest, datetime_condition),
+        busterblade: graph('バスターブレイド', datetimes, newest, datetime_condition),
+        amaryllis: graph('アマリリス', datetimes, newest, datetime_condition),
+        velvet: graph('ベルベット', datetimes, newest, datetime_condition),
+        finalday: graph('ファイナルデイ', datetimes, newest, datetime_condition),
+      }
+    end
   end
 
   private
