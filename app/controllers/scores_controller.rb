@@ -6,7 +6,9 @@ class ScoresController < ApplicationController
       datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
       datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
-      idols = Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+      newest = Score.where(subject: @subject).order(datetime: :desc).first.datetime
+      target_idols = Score.where(subject: @subject, datetime: newest).order(:rank).limit(3).pluck(:idol)
+      idols = Score.where(subject: @subject, idol: target_idols).order(:idol, :datetime)
       idols = idols.group_by(&:idol)
 
       diffs = Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)
@@ -99,7 +101,5 @@ class ScoresController < ApplicationController
                else
                  @subject = '主人公'
                end
-    newest = Score.where(subject: @subject).order(datetime: :desc).first.datetime
-    @target_idols = Score.where(subject: @subject, datetime: newest).order(:rank).limit(3).pluck(:idol)
   end
 end
