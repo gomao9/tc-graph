@@ -2,17 +2,16 @@ class ScoresController < ApplicationController
   before_action :set_subject, only: :index
 
   def index
-    datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
-    datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
-
-    idols = Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
-    idols = idols.group_by(&:idol)
-
-    diffs = Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)
-    diffs = diffs.group_by(&:datetime).map { |_group, (first, second)| first.score - second.score }
-
-
     @graph = Rails.cache.fetch("index/#{@subject}/graph", expired_in: 10.minutes) do
+      datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
+      datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
+
+      idols = Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+      idols = idols.group_by(&:idol)
+
+      diffs = Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)
+      diffs = diffs.group_by(&:datetime).map { |_group, (first, second)| first.score - second.score }
+
       LazyHighCharts::HighChart.new('graph') do |f|
         f.title('得票数推移')
         f.xAxis(categories: datetimes)
