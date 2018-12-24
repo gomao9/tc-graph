@@ -6,9 +6,9 @@ class ScoresController < ApplicationController
     datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
     idols = Rails.cache.fetch("index/#{@subject}/scores", expired_in: 10.minutes) do
-      Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+      idols = Score.where(subject: @subject, idol: @target_idols).order(:idol, :datetime)
+      idols.group_by(&:idol)
     end
-    idols = idols.group_by(&:idol)
 
     diffs = Rails.cache.fetch("index/#{@subject}/diffs", expired_in: 10.minutes) do
       Score.where(subject: @subject, rank: [1, 2]).order(:datetime, :rank)

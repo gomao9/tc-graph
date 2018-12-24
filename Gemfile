@@ -59,5 +59,7 @@ end
 group :production do
   gem 'pg'
   gem 'actionpack-page_caching'
+  gem 'dalli'
+  gem 'memcachier'
 end
 
