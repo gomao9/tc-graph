@@ -1,14 +1,13 @@
 class DashboardController < ApplicationController
   def index
-    subject = '主人公'
-    newest = Score.where(subject: subject).order(datetime: :desc).first.datetime
-    datetimes = Score.where(subject: subject).order(:datetime).pluck(:datetime).uniq.last(24*60/5)
-    start_date = datetimes.first
-    datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
-    datetime_condition = Score.arel_table[:datetime].gteq(start_date)
-
-
     @graphs = Rails.cache.fetch("dashboard", expired_in: 10.minutes) do
+      subject = '主人公'
+      newest = Score.where(subject: subject).order(datetime: :desc).first.datetime
+      datetimes = Score.where(subject: subject).order(:datetime).pluck(:datetime).uniq.last(24*60/5)
+      start_date = datetimes.first
+      datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
+      datetime_condition = Score.arel_table[:datetime].gteq(start_date)
+
       {
         heroine: graph('主人公', datetimes, newest, datetime_condition),
         friend: graph('友達', datetimes, newest, datetime_condition),
