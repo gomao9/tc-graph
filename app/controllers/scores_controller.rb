@@ -2,12 +2,14 @@ class ScoresController < ApplicationController
   before_action :set_subject, only: :index
 
   def index
+    @newest = Score.where(subject: @subject).order(datetime: :desc).first.datetime
+    @ranking = Score.where(subject: @subject, datetime: @newest).order(:rank)
+    
     @graph = Rails.cache.fetch("index/#{@subject}/graph") do
       datetimes = Score.where(subject: @subject).order(:datetime).pluck(:datetime).uniq
       datetimes.map! { |d| d.strftime('%m/%d %H:%M') }
 
-      newest = Score.where(subject: @subject).order(datetime: :desc).first.datetime
-      target_idols = Score.where(subject: @subject, datetime: newest).order(:rank).limit(3).pluck(:idol)
+      target_idols = Score.where(subject: @subject, datetime: @newest).order(:rank).limit(3).pluck(:idol)
       idols = Score.where(subject: @subject, idol: target_idols).order(:idol, :datetime)
       idols = idols.group_by(&:idol)
 

@@ -6,4 +6,30 @@
   </div>
 </section>
 
-<%= high_chart('graph', @graph) %>
+
+
+<div class="content">
+  <div class="columns">
+    <div class="column">
+      <%= high_chart('graph', @graph) %>
+    </div>
+    <div class="column is-narrow-fullhd">
+      <table>
+        <thead>
+          <th>順位</th>
+          <th>名前</th>
+          <th>得票数</th>
+        </thead>
+        <tbody>
+          <% @ranking.each do |score| %>
+            <tr>
+              <td><%= score.rank %></td>
+              <td><%= score.idol %></td>
+              <td><%= score.score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
