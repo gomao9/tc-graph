@@ -16,24 +16,19 @@
 
 <div class="columns is-multiline">
   <div class="column is-one-third">
-    <%= link_to '主人公', 'heroine', class: 'subtitle is-6' %>
-    <%= high_chart('heroine', @graphs[:heroine]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '主人公', cast: :heroine } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '友達', 'friend', class: 'subtitle is-6' %>
-    <%= high_chart('friend', @graphs[:friend]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '友達', cast: :friend } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '先生', 'teacher', class: 'subtitle is-6' %>
-    <%= high_chart('teacher', @graphs[:teacher]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '先生', cast: :teacher } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '館の女主人', 'landlady', class: 'subtitle is-6' %>
-    <%= high_chart('landlady', @graphs[:landlady]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '館の女主人', cast: :landlady } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'メイド', 'maid', class: 'subtitle is-6' %>
-    <%= high_chart('maid', @graphs[:maid]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'メイド', cast: :maid } %>
   </div>
 </div>
 
@@ -47,24 +42,19 @@
 
 <div class="columns is-multiline">
   <div class="column is-one-third">
-    <%= link_to '少女', 'girl', class: 'subtitle is-6' %>
-    <%= high_chart('girl', @graphs[:girl]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '少女', cast: :girl } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '妖精', 'fairy', class: 'subtitle is-6' %>
-    <%= high_chart('fairy', @graphs[:fairy]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '妖精', cast: :fairy } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '魔法使い', 'witch', class: 'subtitle is-6' %>
-    <%= high_chart('witch', @graphs[:witch]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '魔法使い', cast: :witch } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'オオカミ', 'wolf', class: 'subtitle is-6' %>
-    <%= high_chart('wolf', @graphs[:wolf]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'オオカミ', cast: :wolf } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to '旅人', 'traveller', class: 'subtitle is-6' %>
-    <%= high_chart('traveller', @graphs[:traveller]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: '旅人', cast: :traveller } %>
   </div>
 </div>
 
@@ -78,23 +68,18 @@
 
 <div class="columns is-multiline">
   <div class="column is-one-third">
-    <%= link_to 'ダスク', 'dusk', class: 'subtitle is-6' %>
-    <%= high_chart('dusk', @graphs[:dusk]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'ダスク', cast: :dusk } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'バスターブレイド', 'busterblade', class: 'subtitle is-6' %>
-    <%= high_chart('busterblade', @graphs[:busterblade]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'バスターブレイド', cast: :busterblade } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'アマリリス', 'amaryllis', class: 'subtitle is-6' %>
-    <%= high_chart('amaryllis', @graphs[:amaryllis]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'アマリリス', cast: :amaryllis } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'ベルベット', 'velvet', class: 'subtitle is-6' %>
-    <%= high_chart('velvet', @graphs[:velvet]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'ベルベット', cast: :velvet } %>
   </div>
   <div class="column is-one-third">
-    <%= link_to 'ファイナルデイ', 'finalday', class: 'subtitle is-6' %>
-    <%= high_chart('finalday', @graphs[:finalday]) %>
+    <%= render partial: 'cast_card', locals: { cast_name: 'ファイナルデイ', cast: :finalday } %>
   </div>
 </div>
