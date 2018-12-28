@@ -25,7 +25,7 @@
             <tr>
               <td><%= score.rank %></td>
               <td><%= score.idol %></td>
-              <td><%= score.score %></td>
+              <td class="has-text-right"><%= score.score.to_s(:delimited) %></td>
             </tr>
           <% end %>
         </tbody>
