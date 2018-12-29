@@ -45,7 +45,7 @@ class Score < ApplicationRecord
 
     LazyHighCharts::HighChart.new(subject) do |f|
       f.title('得票数推移')
-      f.xAxis(categories: formatted_datetimes(subject))
+      f.xAxis(categories: datetimes.map { |d| d.strftime('%m/%d %H:%M') })
       f.yAxis([
         { title: { text: '総得票数' } },
         { title: { text: '票差' }, gridLineWidth: 0, opposite: true },
@@ -67,7 +67,6 @@ class Score < ApplicationRecord
 
   scope :datetimes, -> (subject) { where(subject: subject).order(:datetime).pluck(:datetime).uniq }
   scope :datetimes_in24h, -> (subject) { datetimes(subject).last(24*60/5) }
-  scope :formatted_datetimes, -> (subject) { datetimes(subject).map { |d| d.strftime('%m/%d %H:%M') } }
 
   scope :diffs, -> (subject) do
     diffs = where(subject: subject, rank: [1, 2]).order(:datetime, :rank)
