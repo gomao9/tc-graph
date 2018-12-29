@@ -6,7 +6,7 @@ class ScoresController < ApplicationController
     @ranking = Score.where(subject: @subject, datetime: @newest).order(:rank)
     
     @graph = Rails.cache.fetch("index/#{@subject}/graph") do
-      Score.detail_graph(@subject, @newest)
+      Score.detail_graph(@subject)
     end
   end
 
